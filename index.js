@@ -24,27 +24,36 @@ function transitionPage(el, groupOut, groupIn) {
   }, LONGESTPOSSIBLE)
 }
 /*************************************************************************/
-
 function delayedFadeOut(div, range) {
-  // Your solution here
-  fadeOut(div)
+  setTimeout(() => {
+      fadeOut(div);
+  }, range)
 }
 
 function delayedFadeIn(div, range) {
-  // Your solution here
-  fadeIn(div)
+  setTimeout(() => {
+      fadeIn(div);
+  }, range)
 }
 
 function fadeAllOut(el, group) {
-  // Your solution here
-  group.forEach(div => {
-    delayedFadeOut(div)
-  })
+  let newArray = group.filter(function(element){
+    return element!=el;
+  });
+  delayedFadeOut(el, LONGRANGE);
+  newArray.forEach(div => {
+    const randomNumber = (min, max) => {
+    return Math.random() * (max - min) + min;
+    }
+    delayedFadeOut(div, randomNumber(MINDELAY, SHORTRANGE));
+  });
 }
 
 function fadeAllIn(group) {
-  // Your solution here
   group.forEach(div => {
-    delayedFadeIn(div)
-  })
+    const randomNumber = (min, max) => {
+    return Math.random() * (max - min) + min;
+    }
+    delayedFadeIn(div, randomNumber(MINDELAY, SHORTRANGE));
+  });
 }
